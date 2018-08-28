@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>井通链造币 </title>
+</head>
+<body>
+<h1>井通链造币<a href="batchTransfer.html">批量转账</a> <a href="batchReg.html">批量注册</a> <a href="batchUserInfo.html">批量用户信息</a></h1></h1>
+<form id="createCoinForm" name="createCoinForm" method="POST"  >
+
+  <div class="form-group">
+    <label for="chainUrl">链地址</label>
+    <div class="col-sm-4">
+      <input class="form-control col-sm-10" type="text" class="required" name="chainUrl" id="chainUrl" value="http://47.104.19.20:3000/" placeholder="http://47.104.19.20:3000/"/>
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <label for="sourceAddress">发币账号地址</label>
+    <div class="col-sm-4">
+      <input class="form-control col-sm-10" type="text" required name="sourceAddress" value="wU8ChLzJJvAG4fLvBCTELL51Rs1ghn63Pu" id="sourceAddress"placeholder="发送地址"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="privateKey">发币私钥</label>
+    <div class="col-sm-4">
+      <input class="form-control col-sm-10" type="text" required name="privateKey" value="snG26HY7FCTfJ7BDCt1dtx8zKCfYm" id="privateKey"placeholder="私钥"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="sourceAddress">接收币地址</label>
+    <div class="col-sm-4">
+      <input class="form-control col-sm-10" type="text" required name="desAddress" value="wBkGXs3psjRvxxJsMgUPqWqu2CiQPEgVHU" id="desAddress"placeholder="接收币地址"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="amount">发币总量</label>
+    <div class="col-sm-4">
+      <input class="form-control col-sm-10" type="text" required name="amount" id="amount"placeholder="发币总量"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="currency">币简称</label>
+    <div class="col-sm-4">
+      <input class="form-control col-sm-10" type="text" required name="currency" id="currency"placeholder="币简称 例如：BTC"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="currency">币名称</label>
+    <div class="col-sm-4">
+      <input class="form-control col-sm-10" type="text" required name="coinName" id="coinName" placeholder="币名称 例如：比特币"/>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="currency">银关</label>
+    <div class="col-sm-4">
+      <input class="form-control col-sm-10" type="text" required name="issuer" id="issuer" value="wMA6v2JSKTy5eApScCu6fog3AguXKj1m85" placeholder="银关 "/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="currency">memos</label>
+    <div class="col-sm-4">
+      <input class="form-control col-sm-10" type="text" required name="memos" id="memos" placeholder="备注"/>
+    </div>
+  </div>
+
+
+
+  <button type="button" class="btn btn-primary" id="validExcel2" onclick="validExcel()" >提交</button>
+
+</form>
+
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.bootcss.com/jquery/3.3.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/jquery.form/4.2.2/jquery.form.js"></script>
+
+<script>
+    var serverUrl = "http://localhost:8080/";
+    function downExcel(){
+        window.open(excelUrl+'/批量用户注册.xlsx');
+    }
+
+    function validExcel(){
+        var data = $("form").serialize();
+        $.ajax({
+            url: serverUrl+'batchTransfer/createCoin.json',
+            type: 'POST',
+            data: $("form").serialize(),
+            dataType: "json",
+
+            success: function (result) {
+                if(result.code ==0 ){
+                    alert(result.message);
+                }else{
+                    alert("造币成功！");
+                }
+
+            }
+        });
+    }
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

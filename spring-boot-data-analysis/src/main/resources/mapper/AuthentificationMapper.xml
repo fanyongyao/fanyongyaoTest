@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jlt.analysis.service.AuthentificationService">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.jlt.analysis.model.Authentification" id="resultMap">
+        <result property="id" column="id"/>
+        <result property="timesTamp" column="times_tamp"/>
+        <result property="account" column="account"/>
+        <result property="appId" column="app_id"/>
+        <result property="identityType" column="identity_type"/>
+        <result property="identityNo" column="identity_no"/>
+        <result property="provinceId" column="province_id"/>
+        <result property="cityId" column="city_id"/>
+        <result property="gps" column="gps"/>
+        <result property="deviceId" column="device_id"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+
+</mapper>
